@@ -1,0 +1,14 @@
+# Data (downloaded automatically by MNE eegbci loader)
+mne_data/
+*.edf
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
