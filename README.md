@@ -24,7 +24,7 @@ automatically on first run via MNE's `eegbci` loader.
 | Classifier | Linear Discriminant Analysis |
 | Validation | 5-fold stratified cross-validation, per subject |
 
-## Results (5 subjects)
+## Results (committed run: 5 subjects)
 
 | Subject | AUC | Accuracy |
 |---------|-----|----------|
@@ -38,8 +38,7 @@ automatically on first run via MNE's `eegbci` loader.
 The wide spread across subjects is the expected finding, not noise: some
 participants produce cleanly separable motor-imagery patterns (S02) while others
 sit near chance ("BCI illiteracy"), a well-documented phenomenon in the field.
-For S02, a 500-permutation test confirms the decoding is significant (AUC = 0.95,
-p = 0.002).
+An earlier run reported a 500-permutation test for S02 (AUC = 0.95, p = 0.002). The current script does not contain a permutation test, so that figure is not reproducible from this repository as it stands.
 
 The figure panels: **(a)** per-subject cross-validated AUC; **(b)** sliding-window
 CSP decoding over time, peaking mid-trial within the imagery window; **(c)** CSP
@@ -53,8 +52,7 @@ pip install -r requirements.txt
 python eeg_decoding_pipeline.py
 ```
 
-Edit `SUBJECTS` in `eeg_decoding_pipeline.py` to scale to more participants (the
-full dataset has 109).
+`SUBJECTS` in `eeg_decoding_pipeline.py` is now all 109 participants, so a default run downloads the full dataset and takes considerably longer than the 5-subject run behind the table above. For a quick check, set `SUBJECTS = list(range(1, 6))`. The committed `eeg_decoding_results.csv`, figure and table reflect the 5-subject run, not a full 109-subject run, so no population-level result is claimed here.
 
 ## Files
 
@@ -64,7 +62,7 @@ full dataset has 109).
 
 ## Possible extensions
 
-- Scale to all 109 subjects for a proper performance distribution
+- Commit results and the distribution plot from a full 109-subject run
 - Benchmark a Riemannian-geometry classifier (`pyriemann`) or a compact CNN
   (EEGNet / Braindecode) against this CSP baseline
 - Add a 4-class variant (both fists vs. both feet; runs 6, 10, 14)
